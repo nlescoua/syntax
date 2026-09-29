@@ -293,7 +293,7 @@ const CppParserGeneratorTrait = {
       let action = this._actionFromHandler(handler);
 
       this._lexHandlers.push({
-        args: 'const Tokenizer& tokenizer, const std::string& yytext',
+        args: 'Tokenizer& tokenizer, const std::string& yytext',
         action,
       });
 
