@@ -36,7 +36,7 @@ struct Token {
 
 using SharedToken = std::shared_ptr<Token>;
 
-typedef TokenType (*LexRuleHandler)(const Tokenizer&, const std::string&);
+typedef TokenType (*LexRuleHandler)(Tokenizer&, const std::string&);
 
 // ------------------------------------------------------------------
 // Lex rule: [regex, handler]
