@@ -14,9 +14,7 @@ class Tokenizer;
 
 enum class TokenType {
   __EMPTY = -1,
-  // clang-format off
   {{{TOKEN_TYPES}}}
-  // clang-format on
 };
 
 // ------------------------------------------------------------------
@@ -50,9 +48,7 @@ struct LexRule {
 // Token.
 
 enum TokenizerState {
-  // clang-format off
   {{{TOKENIZER_STATES}}}
-  // clang-format on
 };
 
 // ------------------------------------------------------------------
@@ -247,11 +243,9 @@ class Tokenizer {
   /**
    * Lexical rules.
    */
-  // clang-format off
   static constexpr size_t LEX_RULES_COUNT = {{{LEX_RULES_COUNT}}};
   static std::array<LexRule, LEX_RULES_COUNT> lexRules_;
   static std::map<TokenizerState, std::vector<size_t>> lexRulesByStartConditions_;
-  // clang-format on
 
   /**
    * Special EOF token.
@@ -296,16 +290,12 @@ class Tokenizer {
 
 std::string Tokenizer::__EOF("$");
 
-// clang-format off
 {{{LEX_RULE_HANDLERS}}}
-// clang-format on
 
 // ------------------------------------------------------------------
 // Lexical rules.
 
-// clang-format off
 std::array<LexRule, Tokenizer::LEX_RULES_COUNT> Tokenizer::lexRules_ = {{{LEX_RULES}}};
 std::map<TokenizerState, std::vector<size_t>> Tokenizer::lexRulesByStartConditions_ = {{{LEX_RULES_BY_START_CONDITIONS}}};
-// clang-format on
 
 #endif

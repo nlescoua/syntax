@@ -49,17 +49,16 @@
 //     ...
 //   }
 //
+
 // clang-format off
-{{{MODULE_INCLUDE}}}  // clang-format on
+{{{MODULE_INCLUDE}}}
 
 namespace syntax {
 
 /**
  * Tokenizer class.
  */
-// clang-format off
 {{{TOKENIZER}}}
-// clang-format on
 
 #define POP_V()              \
   parser.valuesStack.back(); \
@@ -90,9 +89,7 @@ struct TableEntry {
   int value;
 };
 
-// clang-format off
 class {{{PARSER_CLASS_NAME}}};
-// clang-format on
 
 using yyparse = {{{PARSER_CLASS_NAME}}};
 
@@ -117,9 +114,7 @@ using Row = std::map<int, TableEntry>;
 /**
  * Parser class.
  */
-// clang-format off
 class {{{PARSER_CLASS_NAME}}} {
-  // clang-format on
  public:
   /**
    * Parsing values stack.
@@ -150,9 +145,7 @@ class {{{PARSER_CLASS_NAME}}} {
    * Parses a string.
    */
   Value parse(const std::string& str) {
-    // clang-format off
     {{{ON_PARSE_BEGIN_CALL}}}
-    // clang-format on
 
     // Initialize the tokenizer and the string.
     tokenizer.initString(str);
@@ -222,9 +215,7 @@ class {{{PARSER_CLASS_NAME}}} {
         statesStack.pop_back();
 
         // Pop the parsed value.
-        // clang-format off
         {{{PARSED_RESULT}}}
-        // clang-format on
 
         if (statesStack.size() != 1 || statesStack.back() != 0 ||
             tokenizer.hasMoreTokens()) {
@@ -233,9 +224,7 @@ class {{{PARSER_CLASS_NAME}}} {
 
         statesStack.pop_back();
 
-        // clang-format off
         {{{ON_PARSE_END_CALL}}}
-        // clang-format on
 
         return result;
       }
@@ -256,32 +245,24 @@ class {{{PARSER_CLASS_NAME}}} {
                                    token->startColumn);
   }
 
-  // clang-format off
   static constexpr size_t PRODUCTIONS_COUNT = {{{PRODUCTIONS_COUNT}}};
   static std::array<Production, PRODUCTIONS_COUNT> productions_;
 
   static constexpr size_t ROWS_COUNT = {{{ROWS_COUNT}}};
   static std::array<Row, ROWS_COUNT> table_;
-  // clang-format on
 };
 
 // ------------------------------------------------------------------
 // Productions.
 
-// clang-format off
 {{{PRODUCTION_HANDLERS}}}
-// clang-format on
 
-// clang-format off
 std::array<Production, yyparse::PRODUCTIONS_COUNT> yyparse::productions_ = {{{PRODUCTIONS}}};
-// clang-format on
 
 // ------------------------------------------------------------------
 // Parsing table.
 
-// clang-format off
 std::array<Row, yyparse::ROWS_COUNT> yyparse::table_ = {{{TABLE}}};
-// clang-format on
 
 }  // namespace syntax
 
