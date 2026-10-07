@@ -119,10 +119,10 @@ class Tokenizer {
 
     auto strSlice = str_.substr(cursor_);
 
-    auto lexRulesForState = lexRulesByStartConditions_.at(getCurrentState());
+    const auto& lexRulesForState = lexRulesByStartConditions_.at(getCurrentState());
 
     for (const auto& ruleIndex : lexRulesForState) {
-      auto rule = lexRules_[ruleIndex];
+      const auto& rule = lexRules_[ruleIndex];
       std::smatch sm;
 
       if (std::regex_search(strSlice, sm, rule.regex)) {
