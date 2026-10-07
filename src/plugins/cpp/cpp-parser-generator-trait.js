@@ -297,7 +297,7 @@ const CppParserGeneratorTrait = {
         action,
       });
 
-      return `{std::regex(R"(${lexRule.getRawMatcher()})"), ` +
+      return `{boost::regex(R"(${lexRule.getRawMatcher()})"), ` +
         `&_lexRule${this._lexHandlers.length}}`;
     });
 

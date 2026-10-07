@@ -40,7 +40,7 @@ typedef TokenType (*LexRuleHandler)(Tokenizer&, const std::string&);
 // Lex rule: [regex, handler]
 
 struct LexRule {
-  std::regex regex;
+  boost::regex regex;
   LexRuleHandler handler;
 };
 
@@ -123,9 +123,9 @@ class Tokenizer {
 
     for (const auto& ruleIndex : lexRulesForState) {
       const auto& rule = lexRules_[ruleIndex];
-      std::smatch sm;
+      boost::smatch sm;
 
-      if (std::regex_search(strSlice, sm, rule.regex)) {
+      if (regex_search(strSlice, sm, rule.regex)) {
         yytext = sm[0];
 
         captureLocations_(yytext);
