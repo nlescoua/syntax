@@ -125,7 +125,7 @@ class Tokenizer {
       const auto& rule = lexRules_[ruleIndex];
       boost::smatch sm;
 
-      if (regex_search(strSlice, sm, rule.regex)) {
+      if (regex_search(strSlice, sm, rule.regex, boost::match_continuous)) {
         yytext = sm[0];
 
         captureLocations_(yytext);
